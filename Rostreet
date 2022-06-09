@@ -1,1 +1,67 @@
-lol no
+local SimpleShindoUi = loadstring(game:HttpGet("https://raw.githubusercontent.com/naypramx/Ui__Project/Script/SimpleShindoUi"))()
+
+local Main = SimpleShindoUi:new()
+
+local Tab = Main:Tap('RoStreet')
+
+local page = Tab:page()
+
+page:Button('TOLOL!',function()
+
+end)
+
+page:Toggle('AntiStop',false,function(t)
+    AntiStop();
+end)
+
+page:Toggle('HitboxExtender',false,function(t)
+    HitBoxExtender();
+end)
+
+page:Toggle('InfEnergy',false,function (t)
+    InfEnergy();
+end)
+
+page:Slider('Slider!',1,100,20,function(t)
+    print(t)
+end)
+
+local drope = page:drop('Dropdown!',"Nothings",false,{'DinoHub','CenterHub'},function(t)
+    print(t) -- ห้ามนำไปแจกต่อนะจ๊ะ XD
+end)
+
+local page2 = Tab:page()
+page2:Button('Clear Dropdown!',function()
+    drope:clear()
+end)
+page2:Button('Refresh Dropdown!',function()
+    drope:add({"Simple"}) -- มันทำไงวะ -- ห้ามนำไปแจกต่อนะจ๊ะ XD
+end)
+
+---------------------------function
+function AntiStop()
+    spawn(function()
+    for i, v in pairs(game.Workspace[game.Players.LocalPlayer.Name]:FindFirstChild("Ragdoll"):GetChildren()) do
+        v:Destroy()
+    end    
+end)
+end
+
+function HitBoxExtender()
+    spawn(function()
+        for i,v in pairs(workspace:GetDescendants()) do
+            if v:IsA("BasePart") and v.Name == "Head" and v.Parent.Name ~= game.Players.LocalPlayer.Name then
+            v.Size = Vector3.new(10,10,10)
+            v.Transparency = 0.2
+            end
+            end 
+    end)
+end
+
+function InfEnergy()
+    spawn(function()
+        while wait() do
+            game.Workspace[game.Players.LocalPlayer.Name].Values.Energy.Value = math.huge
+            end
+    end)
+end
